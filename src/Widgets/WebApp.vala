@@ -128,9 +128,19 @@ namespace Webpin {
                 request_begin ();
                 if (load_event == WebKit.LoadEvent.FINISHED) {
                     visible_child_name = "app";
+                    
+                    // TODO: Hier Logik für Favicon einfügen.
+                    // https://valadoc.org/webkit2gtk-4.0/WebKit.WebView.save.html
+                    // https://wiki.gnome.org/Projects/Vala/Tutorial#Asynchronous_Methods
+                    
                     if (app_notification.reveal_child) {
                         app_notification.reveal_child = false;
                     }
+                    
+                    var pathfile = File.new_for_path ("/home/snowparrot/Dokumente/test.html");
+                    app_view.save_to_file (pathfile, WebKit.SaveMode.MHTML, null);
+                    
+                    
                     request_finished ();
                 }
             });
